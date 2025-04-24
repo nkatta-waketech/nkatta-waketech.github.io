@@ -5,16 +5,17 @@ function fetchGradeData() {
   xhr.onreadystatechange = function() {
     let results;
     if(xhr.readyState == xhr.DONE) {
-      if(xhr.status !== 200) {
-        console.error('Could not get grades.
-            Status: $(xhr.stats)');
+      if(xhr.status !== 200){
+        console.error(`Could not get grades. 
+          Status: ${xhr.status}`);
       }
 
       populateGradebook(JSON.parse(xhr.responseText));
-  }
+      }
 }.bind(this)
   xhr.open("get", apiRoute, true);
   xhr.send();
+}
 
 function populateGradebook(data) {
   console.log("Populating gradebook with data:", data);
